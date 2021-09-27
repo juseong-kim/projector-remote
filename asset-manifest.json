@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/projector-remote/static/css/main.ea1455b2.chunk.css",
+    "main.js": "/projector-remote/static/js/main.393a5fcf.chunk.js",
+    "main.js.map": "/projector-remote/static/js/main.393a5fcf.chunk.js.map",
+    "runtime-main.js": "/projector-remote/static/js/runtime-main.60379f90.js",
+    "runtime-main.js.map": "/projector-remote/static/js/runtime-main.60379f90.js.map",
+    "static/js/2.959e97ed.chunk.js": "/projector-remote/static/js/2.959e97ed.chunk.js",
+    "static/js/2.959e97ed.chunk.js.map": "/projector-remote/static/js/2.959e97ed.chunk.js.map",
+    "static/js/3.1e562be5.chunk.js": "/projector-remote/static/js/3.1e562be5.chunk.js",
+    "static/js/3.1e562be5.chunk.js.map": "/projector-remote/static/js/3.1e562be5.chunk.js.map",
+    "index.html": "/projector-remote/index.html",
+    "static/css/main.ea1455b2.chunk.css.map": "/projector-remote/static/css/main.ea1455b2.chunk.css.map",
+    "static/js/2.959e97ed.chunk.js.LICENSE.txt": "/projector-remote/static/js/2.959e97ed.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.60379f90.js",
+    "static/js/2.959e97ed.chunk.js",
+    "static/css/main.ea1455b2.chunk.css",
+    "static/js/main.393a5fcf.chunk.js"
+  ]
+}
