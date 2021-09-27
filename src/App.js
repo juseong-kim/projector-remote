@@ -154,8 +154,9 @@ function App() {
             {done === 0 ? <CircularProgress fontSize="small" /> : <CheckCircleOutlineIcon color="success" />}
           </Grid>
 
-          <Grid container item fontSize="0.7em" justifyContent="center" xs={12}>
-            Viewsonic M1 Mini+ Remote
+          <Grid container item fontSize="0.7em" justifyContent="center" textAlign="center" xs={12}>
+            Viewsonic M1 Mini+ Remote <br /><br /> Sincerely, Joe
+
           </Grid>
 
         </Grid>
