@@ -1,6 +1,7 @@
 # Replacement Remote for Viewsonic M1 Mini+
+A DIY remote for those who have misplaced the original and cannot purchase a replacement. 
 
-A DIY remote for those who have misplaced the original and cannot purchase a replacement.
+Click here for [the online remote](https://juseong-kim.github.io/projector-remote/)  
 
 ## Created with
 - NodeMCU ESP8266 (ESP-12E) - serial wireless module
