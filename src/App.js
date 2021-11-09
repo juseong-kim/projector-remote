@@ -1,5 +1,5 @@
 import './App.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IconButton, Button, Grid } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box';
@@ -24,31 +24,42 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
 function App() {
-  var inter = 0;
-  const [done, setDone] = useState(1);
+  // var inter = 0;
+  // const [done, setDone] = useState(1);
   const theme = useTheme();
   const colorMode = React.useContext(ColorModeContext);
-
-  function thingSpeak(key) {
-    if (done === 1) {
-      setDone(0);
-      inter = setInterval(function () {
-        // call API every second until success
-        axios.get(`https://api.thingspeak.com/update?api_key=2XA1TJQ0PXOTG9EL&field1=${key}`)
-          .then(response => {
-            if (response.data !== 0) {
-              clearInterval(inter);
-              setDone(1);
-              // resetTS();
-            }
-            console.log(`GET ${key}, Response: ${response.data}`)
-          }
-          )
-      }, 300);
+  var Socket;
+  function start() {
+    Socket = new WebSocket('ws://172.28.170.222:80/');
+    // Socket = new WebSocket('ws://' + window.location.hostname + ':81/');
+    Socket.onmessage = function (evt) {
+      console.log(evt.data);
     }
-    // stop calls to API after 10 seconds
-    // setTimeout(function(){console.log('10 seconds elapsed'); clearInterval(inter);},10000);
+    Socket.onopen = function () {
+      console.log('Connected');
+    }
   }
+
+  function irSend(button) {
+    console.log(button);
+    console.log(Socket);
+    Socket.send(button);
+    Socket.onopen = function () {
+      Socket.send(button);
+      console.log('sent');
+    }
+    Socket.onclose = function (e) {
+      setTimeout(start(), 1);
+    }
+  }
+
+
+
+  useEffect(() => {
+    start();
+  }, [])
+
+
   return (
     <div>
       <Box
@@ -71,69 +82,69 @@ function App() {
         >
 
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(1) }}>
+            <IconButton color="primary" onClick={() => { irSend(1) }}>
               <PowerSettingsNewIcon />
             </IconButton>
           </Grid>
           <Grid item xs={4} />
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(2) }}>
+            <IconButton color="primary" onClick={() => { irSend(2) }}>
               <HomeIcon />
             </IconButton>
           </Grid>
 
           <Grid item xs={4} />
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(3) }}>
+            <IconButton color="primary" onClick={() => { irSend(3) }}>
               <KeyboardArrowUpIcon />
             </IconButton>
           </Grid>
           <Grid item xs={4} />
 
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(4) }}>
+            <IconButton color="primary" onClick={() => { irSend(4) }}>
               <ChevronLeftIcon />
             </IconButton>
           </Grid>
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(5) }}>
+            <IconButton color="primary" onClick={() => { irSend(5) }}>
               <RadioButtonCheckedIcon />
             </IconButton>
           </Grid>
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(6) }}>
+            <IconButton color="primary" onClick={() => { irSend(6) }}>
               <ChevronRightIcon />
             </IconButton>
           </Grid>
 
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(7) }}>
+            <IconButton color="primary" onClick={() => { irSend(7) }}>
               <SettingsIcon />
             </IconButton>
           </Grid>
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(8) }}>
+            <IconButton color="primary" onClick={() => { irSend(8) }}>
               <KeyboardArrowDownIcon />
             </IconButton>
           </Grid>
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(9) }}>
+            <IconButton color="primary" onClick={() => { irSend(9) }}>
               <ReplayIcon />
             </IconButton>
           </Grid>
 
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(10) }}>
+            <IconButton color="primary" onClick={() => { irSend(10) }}>
               <VolumeDownIcon />
             </IconButton>
           </Grid>
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(11) }}>
+            <IconButton color="primary" onClick={() => { irSend(11) }}>
               <VolumeOffIcon />
             </IconButton>
           </Grid>
           <Grid container item justifyContent="center" xs={4}>
-            <IconButton color="primary" onClick={() => { thingSpeak(12) }}>
+            <IconButton color="primary" onClick={() => { irSend(12) }}>
               <VolumeUpIcon />
             </IconButton>
           </Grid>
@@ -151,7 +162,8 @@ function App() {
             </Button>
           </Grid>
           <Grid container item justifyContent="center" alignItems="center" xs={4}>
-            {done === 0 ? <CircularProgress fontSize="small" /> : <CheckCircleOutlineIcon color="success" />}
+            {/* {done === 0 ? <CircularProgress fontSize="small" /> : <CheckCircleOutlineIcon color="success" />} */}
+            <CheckCircleOutlineIcon color="success" />
           </Grid>
 
           <Grid container item fontSize="0.7em" justifyContent="center" textAlign="center" xs={12}>
@@ -165,6 +177,27 @@ function App() {
     </div>
   );
 }
+
+// function thingSpeak(key) {
+  //   if (done === 1) {
+  //     setDone(0);
+  //     inter = setInterval(function () {
+  //       // call API every second until success
+  //       axios.get(`https://api.thingspeak.com/update?api_key=2XA1TJQ0PXOTG9EL&field1=${key}`)
+  //         .then(response => {
+  //           if (response.data !== 0) {
+  //             clearInterval(inter);
+  //             setDone(1);
+  //             // resetTS();
+  //           }
+  //           console.log(`GET ${key}, Response: ${response.data}`)
+  //         }
+  //         )
+  //     }, 300);
+  //   }
+  //   // stop calls to API after 10 seconds
+  //   // setTimeout(function(){console.log('10 seconds elapsed'); clearInterval(inter);},10000);
+  // }
 
 export default function ToggleColorMode() {
   const [mode, setMode] = React.useState('dark');
