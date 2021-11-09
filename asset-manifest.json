@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/projector-remote/static/css/main.ea1455b2.chunk.css",
-    "main.js": "/projector-remote/static/js/main.90c31c26.chunk.js",
-    "main.js.map": "/projector-remote/static/js/main.90c31c26.chunk.js.map",
+    "main.js": "/projector-remote/static/js/main.76bc94d1.chunk.js",
+    "main.js.map": "/projector-remote/static/js/main.76bc94d1.chunk.js.map",
     "runtime-main.js": "/projector-remote/static/js/runtime-main.b4df01ac.js",
     "runtime-main.js.map": "/projector-remote/static/js/runtime-main.b4df01ac.js.map",
     "static/js/2.8a99b225.chunk.js": "/projector-remote/static/js/2.8a99b225.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b4df01ac.js",
     "static/js/2.8a99b225.chunk.js",
     "static/css/main.ea1455b2.chunk.css",
-    "static/js/main.90c31c26.chunk.js"
+    "static/js/main.76bc94d1.chunk.js"
   ]
 }
